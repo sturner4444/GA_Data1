@@ -174,13 +174,14 @@ public class Population {
 
             crossed.add(newIndividualOne);
             crossed.add(newIndividualTwo);
+            newIndividualOne.creatRules();
+            newIndividualTwo.creatRules();
             newIndividualOne.evaluateFitness(dataList);
             newIndividualTwo.evaluateFitness(dataList);
 
         }
         //probably not the best place for this but it works, this is the call to the function where the genes are split and placed into new array in fomat of XXXXX Y
-        newIndividualOne.creatRules();
-        newIndividualTwo.creatRules();
+        
 
     }
 

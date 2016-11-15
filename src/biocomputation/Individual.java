@@ -79,23 +79,23 @@ public class Individual {
             }
 
         }
-        String TESTOUTPUT = "";
-
-        for (int i = 0; i < this.genes.length; i++) {
-
-            if ((i + 1) % 6 == 0) {
-
-                TESTOUTPUT += " ";
-                TESTOUTPUT += Integer.toString(this.genes[i]);
-                TESTOUTPUT += "\n";
-
-            } else {
-                TESTOUTPUT += this.genes[i];
-
-            }
-
-        }
-        System.out.println(TESTOUTPUT);
+//        String TESTOUTPUT = "";
+//
+//        for (int i = 0; i < this.genes.length; i++) {
+//
+//            if ((i + 1) % 6 == 0) {
+//
+//                TESTOUTPUT += " ";
+//                TESTOUTPUT += Integer.toString(this.genes[i]);
+//                TESTOUTPUT += "\n";
+//
+//            } else {
+//                TESTOUTPUT += this.genes[i];
+//
+//            }
+//
+//        }
+//        System.out.println(TESTOUTPUT);
 
     }
 
