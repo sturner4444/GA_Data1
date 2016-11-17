@@ -23,12 +23,13 @@ public class evolutionaryMain {
         int genCount = 0;
         int generations = 500;
         int geneLength = 60;
-        int populationSize = 90;
+        int populationSize = 100;
         int bestGen = 0;
-        float muteRate = (float) 0.009;
+        float muteRate = (float) 0.01;
         float xoverRate = (float) 0.7;
         PrintWriter bestText = new PrintWriter("best.txt", "utf-8");
         PrintWriter meanText = new PrintWriter("mean.txt", "utf-8");
+        Validation validation = new Validation();
 
         while (multiRuns > 0) {
             System.out.println("RUN NUMBER-----------------" + multiRuns);
@@ -41,22 +42,21 @@ public class evolutionaryMain {
 
             //keep the best of the previous generation.
             while (genCount < generations) {
-
-                if (genCount > 0) {
-
-                    int worstIndex = 0;
-                    for (int i = 0; i < p.getPopulation().size(); i++) {
-
-                        if (p.getPopulation().get(i).getFitness() < p.getPopulation().get(worstIndex).getFitness()) {
-
-                            worstIndex = i;
-
-                        }
-
-                    }
-                    // p.getPopulation().remove(worstIndex);
-                    //p.getPopulation().add(best);
-                }
+//
+//                if (genCount > 0) {
+//
+//                    int worstIndex = 0;
+//                    for (int i = 0; i < p.getPopulation().size(); i++) {
+//
+//                        if (p.getPopulation().get(i).getFitness() < p.getPopulation().get(worstIndex).getFitness()) {
+//
+//                            worstIndex = i;
+//
+//                        }
+//
+//                    }
+                // p.getPopulation().remove(worstIndex);
+                //p.getPopulation().add(best);
 
                 //Tournament selection creates a new offspring arrayList
                 p.selection();
@@ -100,32 +100,42 @@ public class evolutionaryMain {
 
                 }
 
-//Text file related------------------------------------------------------------------------------------------------------------------------------
-            }
+            }//ENDWHILE
 
-            System.out.println("Generation: " + genCount);
-            System.out.println("Best: " + best.getFitness());
+            int correctlyValidated = validation.validate(best);
+
+            //Text file related------------------------------------------------------------------------------------------------------------------------------
+            System.out.println(
+                    "Generation: " + genCount);
+            System.out.println(
+                    "Best: " + best.getFitness());
             bestText.print(best.getFitness());
-            bestText.append("\n");
+            bestText.append(
+                    "\n");
             int totalFitness = p.countFitness(p.getPopulation());
             int fitMean = 0;
 
             fitMean = (totalFitness / p.getMaxPop());
-            meanText.print(fitMean);
-            meanText.append("\n");
 
-            System.out.println("Mean: " + fitMean);
+            meanText.print(fitMean);
+
+            meanText.append(
+                    "\n");
+
+            System.out.println(
+                    "Mean: " + fitMean);
+
+            System.out.println("Validated: " + correctlyValidated);
 
             multiRuns--;
             genCount = 0;
-        }
+        }//END WHILE
 
         bestText.close();
+
         meanText.close();
 //-----------------------------------------------------------------------------------------------------------------------------------------
 
-        //create a graph
-        // XYLineChart_AWT a = new XYLineChart_AWT("Title");
     }
 
 }
